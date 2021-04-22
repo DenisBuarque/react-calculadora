@@ -10,7 +10,6 @@ function Calculadora() {
   const [txtNumeros, setTxtNumeros] = useState('0');
   const [numero1, setNumero1] = useState('0');
   const [numero2, setNumero2] = useState(null);
-
   const [operacao, setOperacao] = useState(null);
 
   function adicionarNumero(numero)
@@ -51,6 +50,14 @@ function Calculadora() {
     setTxtNumeros(resultado);
   }
 
+  function limpar()
+  {
+    setTxtNumeros('0');
+    setNumero1('0');
+    setNumero2(null);
+    setOperacao(null);
+  }
+
   return (
       <Jumbotron style={{ 
         background: 'transparent !important',
@@ -62,7 +69,7 @@ function Calculadora() {
         <Container>
           <Row>
             <Col xs='3'>
-              <Button variant='danger'>C</Button>
+              <Button variant='danger' onClick={limpar}>C</Button>
             </Col>
             <Col xs='9'>
               <Form.Control type='text' 
@@ -76,25 +83,25 @@ function Calculadora() {
             <Col><Button variant='light' onClick={() => adicionarNumero('7')}>7</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('8')}>8</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('9')}>9</Button></Col>
-            <Col><Button variant='warning' onClick={() => definirOperacao('/')}>/</Button></Col>
+            <Col><Button variant='warning' onClick={() => definirOperacao(DIVISAO)}>/</Button></Col>
           </Row>
           <Row>
             <Col><Button variant='light' onClick={() => adicionarNumero('4')}>4</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('5')}>5</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('6')}>6</Button></Col>
-            <Col><Button variant='warning' onClick={() => definirOperacao('*')}>*</Button></Col>
+            <Col><Button variant='warning' onClick={() => definirOperacao(MULTIPLICAO)}>*</Button></Col>
           </Row>
           <Row>
             <Col><Button variant='light' onClick={() => adicionarNumero('1')}>1</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('2')}>2</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('3')}>3</Button></Col>
-            <Col><Button variant='warning' onClick={() => definirOperacao('-')}>-</Button></Col>
+            <Col><Button variant='warning' onClick={() => definirOperacao(SUBTRACAO)}>-</Button></Col>
           </Row>
           <Row>
             <Col><Button variant='light' onClick={() => adicionarNumero('0')}>0</Button></Col>
             <Col><Button variant='light' onClick={() => adicionarNumero('.')}>.</Button></Col>
             <Col><Button variant='success' onClick={acaoCalcular}>=</Button></Col>
-            <Col><Button variant='warning' onClick={() => definirOperacao('+')}>+</Button></Col>
+            <Col><Button variant='warning' onClick={() => definirOperacao(SOMA)}>+</Button></Col>
           </Row>
         </Container>
 
